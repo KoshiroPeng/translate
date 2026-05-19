@@ -23,8 +23,11 @@
 
 .ctd-card {
   position: absolute;
-  width: 280px;
-  padding: 12px;
+  width: 420px;
+  max-width: min(420px, calc(100vw - 24px));
+  max-height: min(70vh, 560px);
+  overflow: auto;
+  padding: 16px;
   border-radius: 12px;
   background: #ffffff;
   color: #111827;
@@ -34,15 +37,81 @@
   font-family: "Segoe UI", "PingFang SC", sans-serif;
 }
 
+.ctd-card--loading .ctd-card-body::after {
+  content: "";
+  display: inline-block;
+  width: 0.65em;
+  height: 0.65em;
+  margin-left: 6px;
+  border-radius: 999px;
+  background: #ff5a47;
+  animation: ctd-pulse 0.9s ease-in-out infinite;
+  vertical-align: middle;
+}
+
 .ctd-card-title {
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 700;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
 
 .ctd-card-body {
-  font-size: 15px;
-  line-height: 1.5;
+  font-size: 16px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.ctd-card-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.ctd-copy-button,
+.ctd-stop-button {
+  align-items: center;
+  justify-content: center;
+  height: 28px;
+  padding: 0 10px;
+  border: 0;
+  display: inline-flex;
+  border-radius: 999px;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.ctd-copy-button {
+  background: #eef2ff;
+  color: #3730a3;
+}
+
+.ctd-copy-button:hover:not(:disabled) {
+  background: #dfe7ff;
+}
+
+.ctd-copy-button:disabled {
+  background: #f3f4f6;
+  color: #9ca3af;
+  cursor: default;
+}
+
+.ctd-stop-button {
+  background: #ffe3de;
+  color: #b42318;
+}
+
+.ctd-stop-button:hover {
+  background: #ffd4cd;
+}
+
+.ctd-stop-button:disabled {
+  background: #f3f4f6;
+  color: #9ca3af;
+  cursor: default;
 }
 
 .ctd-card-meta {
@@ -53,8 +122,67 @@
 }
 
 .ctd-card-note {
-  margin-top: 8px;
-  font-size: 12px;
-  line-height: 1.45;
+  margin-top: 10px;
+  font-size: 13px;
+  line-height: 1.5;
   color: #4b5563;
+}
+
+.ctd-study-section {
+  display: none;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.ctd-study-block {
+  display: grid;
+  gap: 8px;
+}
+
+.ctd-study-heading {
+  font-size: 13px;
+  font-weight: 700;
+  color: #111827;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.ctd-study-item {
+  padding: 12px;
+  border-radius: 10px;
+  background: #f8fafc;
+  border: 1px solid rgba(15, 23, 42, 0.06);
+}
+
+.ctd-study-item-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.ctd-study-item-body {
+  margin-top: 4px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: #334155;
+}
+
+.ctd-study-item-extra {
+  margin-top: 6px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #64748b;
+}
+
+@keyframes ctd-pulse {
+  0%,
+  100% {
+    transform: scale(0.75);
+    opacity: 0.45;
+  }
+
+  50% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
