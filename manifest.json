@@ -1,0 +1,40 @@
+{
+  "manifest_version": 3,
+  "name": "Click Translate Dot",
+  "version": "0.1.0",
+  "description": "Click an English word on a page, show a red dot, then reveal a Chinese translation.",
+  "permissions": [
+    "storage"
+  ],
+  "host_permissions": [
+    "https://api.deepseek.com/*"
+  ],
+  "background": {
+    "service_worker": "src/background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "src/content.js"
+      ],
+      "css": [
+        "src/styles.css"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "options_page": "options.html",
+  "action": {
+    "default_title": "Click Translate Dot",
+    "default_icon": {
+      "128": "assets/translate-badge.svg"
+    }
+  },
+  "icons": {
+    "128": "assets/translate-badge.svg"
+  }
+}
